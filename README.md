@@ -99,7 +99,7 @@ FINAL_EPSILON = 0.0001
 INITIAL_EPSILON = 0.1
 ```
 
-### Some tips
+### TIPs
 
 1. Trainning network using VNC server
 

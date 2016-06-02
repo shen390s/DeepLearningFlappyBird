@@ -135,7 +135,11 @@ def main():
     if sys.argv.__len__() > 1:
         playGame(sys.argv[1])
     else:
-        print("run with python ",sys.argv[0], "<model path>")
+        checkpoint = tf.train.get_checkpoint_state("saved_networks")
+        if checkpoint and checkpoint.model_checkpoint_path:
+            playGame(checkpoint.model_checkpoint_path)
+        else:
+            print("please run as: python ", sys.argv[0], " <model name path>")
 
 if __name__ == "__main__":
     main()

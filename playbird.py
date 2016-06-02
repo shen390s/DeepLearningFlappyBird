@@ -122,7 +122,7 @@ def runBird(s, readout, h_fc1, sess, model):
         s_t = s_t1
         t += 1
 
-        # say something every 10000 iterations
+        # say something every 10 steps
         if t % 10 == 0:
             print("Step ",t, "score ", score)
 

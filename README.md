@@ -114,7 +114,7 @@ vncserver $DISPLAY
 
 # setup LD_LIBRARY_PATH
 # pygame need to add the path which pygame's extension
-# modules
+# modules to LD_LIBRARY_PATH enable using of jpg format
 LD_LIBRARY_PATH=/usr/lib64/python2.7/site-packages/pygame:...
 export LD_LIBRARY_PATH
 

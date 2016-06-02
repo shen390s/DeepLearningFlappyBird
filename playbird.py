@@ -139,7 +139,7 @@ def main():
         if checkpoint and checkpoint.model_checkpoint_path:
             playGame(checkpoint.model_checkpoint_path)
         else:
-            print("please run as: python ", sys.argv[0], " <model name path>")
+            print("please run as: python ", sys.argv[0], " model_name_path")
 
 if __name__ == "__main__":
     main()

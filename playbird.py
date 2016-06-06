@@ -108,7 +108,7 @@ def runBird(s, readout, h_fc1, sess, model):
         # print("action ", action_index, "reward ", r_t)
 
         if terminal:
-            print("You are killed, final score ", score)
+            print("You are killed, final score ", score,"steps ", t)
             return
         else:
             score = game_state.score

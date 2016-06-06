@@ -85,7 +85,7 @@ def runBird(s, readout, h_fc1, sess, model):
     x_t, r_0, terminal = game_state.frame_step(do_nothing)
     x_t = cv2.cvtColor(cv2.resize(x_t, (80, 80)), cv2.COLOR_BGR2GRAY)
     ret, x_t = cv2.threshold(x_t,1,255,cv2.THRESH_BINARY)
-    x_t = np.reshape(x_t, (80,80,1))
+    # x_t = np.reshape(x_t, (80,80,1))
     s_t = np.stack((x_t, x_t, x_t, x_t), axis=2)
 
     # loading networks

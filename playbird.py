@@ -137,7 +137,7 @@ def playGame(model, count):
     i = 1
     highest_score = 0
     while i < count:
-        runBird(s, readout, h_fc1, sess, model,highest_score)
+        highest_score = runBird(s, readout, h_fc1, sess, model,highest_score)
         i += 1
 
 def main():

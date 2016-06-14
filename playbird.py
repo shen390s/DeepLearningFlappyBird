@@ -9,6 +9,7 @@ import wrapped_flappy_bird as game
 import random
 import numpy as np
 from collections import deque
+import strop
 
 GAME = 'bird' # the name of the game being played for log files
 ACTIONS = 2 # number of valid actions
@@ -20,6 +21,9 @@ INITIAL_EPSILON = 0.0001 # starting value of epsilon
 REPLAY_MEMORY = 50000 # number of previous transitions to remember
 BATCH = 32 # size of minibatch
 FRAME_PER_ACTION = 1
+
+highest_score = 0
+play_count = 1
 
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev = 0.01)
@@ -109,10 +113,13 @@ def runBird(s, readout, h_fc1, sess, model):
         # print("action ", action_index, "reward ", r_t)
 
         if terminal:
-            print("You are killed, final score ", score,"steps ", t)
+            print("You are killed, final score ", score,"steps ", t, "highest score ", highest_score)
             return
         else:
             score = game_state.score
+
+        if score > highest_score:
+            highest_score = score
 
         x_t1 = cv2.cvtColor(cv2.resize(x_t1_colored, (80, 80)), cv2.COLOR_BGR2GRAY)
         ret, x_t1 = cv2.threshold(x_t1, 1, 255, cv2.THRESH_BINARY)
@@ -125,22 +132,34 @@ def runBird(s, readout, h_fc1, sess, model):
 
         # say something every 10 steps
         if t % 10 == 0:
-            print("Step ",t, "score ", score)
+            print("Step ",t, "score ", score, "highest score ", highest_score)
 
-def playGame(model):
+def playGame(model, count):
     sess = tf.InteractiveSession()
     s, readout, h_fc1 = createNetwork()
-    runBird(s, readout, h_fc1, sess, model)
+    i = 1
+    while i < count:
+        runBird(s, readout, h_fc1, sess, model)
+        i += 1
 
 def main():
+    count=1
+    model=""
+
+    if sys.argv.__len__() > 2:
+        count = strop.atoi(sys.argv[2]) 
+
     if sys.argv.__len__() > 1:
-        playGame(sys.argv[1])
+        model = sys.argv[1]
     else:
         checkpoint = tf.train.get_checkpoint_state("saved_networks")
         if checkpoint and checkpoint.model_checkpoint_path:
-            playGame(checkpoint.model_checkpoint_path)
-        else:
-            print("please run as: python ", sys.argv[0], " model_name_path")
+            model = checkpoint.model_checkpoint_path
+
+    if model == "":
+        print ("please run as: python", sys.argv[0]," repeat_count")
+    else:
+        playGame(checkpoint.model_checkpoint_path, count)
 
 if __name__ == "__main__":
     main()

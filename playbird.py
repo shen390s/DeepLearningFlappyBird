@@ -127,8 +127,8 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
         s_t = s_t1
         t += 1
 
-        # say something every 10 steps
-        if t % 10 == 0:
+        # say something every 100 steps
+        if t % 100 == 0:
             print("Step ",t, "score ", score, "highest score ", highest_score)
 
 def playGame(model, count):

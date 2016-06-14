@@ -144,11 +144,11 @@ def main():
     count=1
     model=""
 
-    if sys.argv.__len__() > 2:
-        count = strop.atoi(sys.argv[2]) 
-
     if sys.argv.__len__() > 1:
-        model = sys.argv[1]
+        count = strop.atoi(sys.argv[1]) 
+
+    if sys.argv.__len__() > 2:
+        model = sys.argv[2]
     else:
         checkpoint = tf.train.get_checkpoint_state("saved_networks")
         if checkpoint and checkpoint.model_checkpoint_path:

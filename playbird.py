@@ -89,12 +89,6 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
     # x_t = np.reshape(x_t, (80,80,1))
     s_t = np.stack((x_t, x_t, x_t, x_t), axis=2)
 
-    # loading networks
-    saver = tf.train.Saver()
-    sess.run(tf.initialize_all_variables())
-    saver.restore(sess, model)
-    print("Successfully loaded:", model)
-
     # start game
     t = 0
     score = 0
@@ -134,6 +128,13 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
 def playGame(model, count):
     sess = tf.InteractiveSession()
     s, readout, h_fc1 = createNetwork()
+
+    # loading networks
+    saver = tf.train.Saver()
+    sess.run(tf.initialize_all_variables())
+    saver.restore(sess, model)
+    print("Successfully loaded:", model)
+
     i = 0
     highest_score = 0
     while i < count:

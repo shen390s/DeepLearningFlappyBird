@@ -134,7 +134,7 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
 def playGame(model, count):
     sess = tf.InteractiveSession()
     s, readout, h_fc1 = createNetwork()
-    i = 1
+    i = 0
     highest_score = 0
     while i < count:
         highest_score = runBird(s, readout, h_fc1, sess, model,highest_score)

@@ -159,7 +159,7 @@ def main():
     if model == "":
         print ("please run as: python", sys.argv[0]," repeat_count")
     else:
-        playGame(checkpoint.model_checkpoint_path, count)
+        playGame(model, count)
 
 if __name__ == "__main__":
     main()

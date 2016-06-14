@@ -22,7 +22,7 @@ REPLAY_MEMORY = 50000 # number of previous transitions to remember
 BATCH = 32 # size of minibatch
 FRAME_PER_ACTION = 1
 
-highest_score = 0
+HIGHEST_SCORE = 0
 play_count = 1
 
 def weight_variable(shape):
@@ -113,13 +113,13 @@ def runBird(s, readout, h_fc1, sess, model):
         # print("action ", action_index, "reward ", r_t)
 
         if terminal:
-            print("You are killed, final score ", score,"steps ", t, "highest score ", highest_score)
+            print("You are killed, final score ", score,"steps ", t, "highest score ", HIGHEST_SCORE)
             return
         else:
             score = game_state.score
 
-        if score > highest_score:
-            highest_score = score
+        if score > HIGHEST_SCORE:
+            HIGHEST_SCORE = score
 
         x_t1 = cv2.cvtColor(cv2.resize(x_t1_colored, (80, 80)), cv2.COLOR_BGR2GRAY)
         ret, x_t1 = cv2.threshold(x_t1, 1, 255, cv2.THRESH_BINARY)
@@ -132,7 +132,7 @@ def runBird(s, readout, h_fc1, sess, model):
 
         # say something every 10 steps
         if t % 10 == 0:
-            print("Step ",t, "score ", score, "highest score ", highest_score)
+            print("Step ",t, "score ", score, "highest score ", HIGHEST_SCORE)
 
 def playGame(model, count):
     sess = tf.InteractiveSession()

@@ -10,6 +10,7 @@ import random
 import numpy as np
 from collections import deque
 import strop
+import time
 
 GAME = 'bird' # the name of the game being played for log files
 ACTIONS = 2 # number of valid actions
@@ -124,6 +125,7 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
         # say something every 100 steps
         if t % 100 == 0:
             print("Step ",t, "score ", score, "highest score ", highest_score)
+        sleep(0.1)
 
 def playGame(model, count):
     sess = tf.InteractiveSession()
@@ -140,6 +142,7 @@ def playGame(model, count):
     while i < count:
         highest_score = runBird(s, readout, h_fc1, sess, model,highest_score)
         i += 1
+        sleep(5.0)
 
 def main():
     count=1

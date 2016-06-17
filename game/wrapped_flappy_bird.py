@@ -184,7 +184,7 @@ def checkCrash(player, upperPipes, lowerPipes):
 
     # if player crashes into ground
     if player['y'] + player['h'] >= BASEY - 1:
-        print ("crash to ground\n")
+        # print ("crash to ground\n")
         return True
     else:
 
@@ -206,7 +206,7 @@ def checkCrash(player, upperPipes, lowerPipes):
             lCollide = pixelCollision(playerRect, lPipeRect, pHitMask, lHitmask)
 
             if uCollide or lCollide:
-                print ("uCollide ", uCollide, " lCollide ", lCollide)
+                # print ("uCollide ", uCollide, " lCollide ", lCollide)
                 return True
 
     return False

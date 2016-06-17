@@ -63,7 +63,7 @@ class GameState:
         reward = 0.1
         terminal = False
 
-        print ("x=", self.playerx, "y=",self.playery, self.upperPipes, self.lowerPipes)
+        # print ("x=", self.playerx, "y=",self.playery, self.upperPipes, self.lowerPipes)
         if sum(input_actions) != 1:
             raise ValueError('Multiple input actions!')
 

@@ -125,7 +125,7 @@ def runBird(s, readout, h_fc1, sess, model, highest_score):
         # say something every 100 steps
         if t % 100 == 0:
             print("Step ",t, "score ", score, "highest score ", highest_score)
-        time.sleep(0.04)
+        time.sleep(0.03)
 
 def playGame(model, count):
     sess = tf.InteractiveSession()

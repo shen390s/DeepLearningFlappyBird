@@ -186,11 +186,6 @@ def checkCrash(player, upperPipes, lowerPipes):
     player['w'] = IMAGES['player'][0].get_width()
     player['h'] = IMAGES['player'][0].get_height()
 
-    print("player ", player)
-
-    for uPipe,lPipe in zip(upperPipes, lowerPipes):
-        print ("upipe ", uPipe, "lpipe ", lPipe)
-
     # if player crashes into ground
     if player['y'] + player['h'] >= BASEY - 1:
         # print ("crash to ground\n")
@@ -200,10 +195,14 @@ def checkCrash(player, upperPipes, lowerPipes):
         playerRect = pygame.Rect(player['x'], player['y'],
                       player['w'], player['h'])
 
+        print ("player ", playerRect)
+
         for uPipe, lPipe in zip(upperPipes, lowerPipes):
             # upper and lower pipe rects
             uPipeRect = pygame.Rect(uPipe['x'], uPipe['y'], PIPE_WIDTH, PIPE_HEIGHT)
             lPipeRect = pygame.Rect(lPipe['x'], lPipe['y'], PIPE_WIDTH, PIPE_HEIGHT)
+
+            print ("upipe ", uPipeRect, "lpipe ", lpipeRect)
 
             # player and upper/lower pipe hitmasks
             pHitMask = HITMASKS['player'][pi]

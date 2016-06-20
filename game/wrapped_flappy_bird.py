@@ -195,14 +195,14 @@ def checkCrash(player, upperPipes, lowerPipes):
         playerRect = pygame.Rect(player['x'], player['y'],
                       player['w'], player['h'])
 
-        print ("player ", playerRect)
+        # print ("player ", playerRect)
 
         for uPipe, lPipe in zip(upperPipes, lowerPipes):
             # upper and lower pipe rects
             uPipeRect = pygame.Rect(uPipe['x'], uPipe['y'], PIPE_WIDTH, PIPE_HEIGHT)
             lPipeRect = pygame.Rect(lPipe['x'], lPipe['y'], PIPE_WIDTH, PIPE_HEIGHT)
 
-            print ("upipe ", uPipeRect, "lpipe ", lPipeRect)
+            # print ("upipe ", uPipeRect, "lpipe ", lPipeRect)
 
             # player and upper/lower pipe hitmasks
             pHitMask = HITMASKS['player'][pi]

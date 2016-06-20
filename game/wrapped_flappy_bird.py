@@ -186,10 +186,10 @@ def checkCrash(player, upperPipes, lowerPipes):
     player['w'] = IMAGES['player'][0].get_width()
     player['h'] = IMAGES['player'][0].get_height()
 
-    print(player)
+    print("player ", player)
 
     for uPipe,lPipe in zip(upperPipes, lowerPipes):
-        print (uPipe, lPipe)
+        print ("upipe ", uPipe, "lpipe ", lPipe)
 
     # if player crashes into ground
     if player['y'] + player['h'] >= BASEY - 1:

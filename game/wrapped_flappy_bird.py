@@ -56,6 +56,21 @@ class GameState:
         self.playerAccY    =   1   # players downward accleration
         self.playerFlapAcc =  -9   # players speed on flapping
         self.playerFlapped = False # True when player flaps
+        self.draw()
+
+    def draw(self):
+        # draw sprites
+        SCREEN.blit(IMAGES['background'], (0,0))
+
+        for uPipe, lPipe in zip(self.upperPipes, self.lowerPipes):
+            SCREEN.blit(IMAGES['pipe'][0], (uPipe['x'], uPipe['y']))
+            SCREEN.blit(IMAGES['pipe'][1], (lPipe['x'], lPipe['y']))
+
+        SCREEN.blit(IMAGES['base'], (self.basex, BASEY))
+        # print score so player overlaps the score
+        # showScore(self.score)
+        SCREEN.blit(IMAGES['player'][self.playerIndex],
+                    (self.playerx, self.playery))
 
     def frame_step(self, input_actions):
         pygame.event.pump()
@@ -115,6 +130,8 @@ class GameState:
             self.upperPipes.pop(0)
             self.lowerPipes.pop(0)
 
+        self.draw()
+
         # check if crash here
         isCrash= checkCrash({'x': self.playerx, 'y': self.playery,
                              'index': self.playerIndex},
@@ -125,19 +142,6 @@ class GameState:
             terminal = True
             self.__init__()
             reward = -1
-
-        # draw sprites
-        SCREEN.blit(IMAGES['background'], (0,0))
-
-        for uPipe, lPipe in zip(self.upperPipes, self.lowerPipes):
-            SCREEN.blit(IMAGES['pipe'][0], (uPipe['x'], uPipe['y']))
-            SCREEN.blit(IMAGES['pipe'][1], (lPipe['x'], lPipe['y']))
-
-        SCREEN.blit(IMAGES['base'], (self.basex, BASEY))
-        # print score so player overlaps the score
-        # showScore(self.score)
-        SCREEN.blit(IMAGES['player'][self.playerIndex],
-                    (self.playerx, self.playery))
 
         image_data = pygame.surfarray.array3d(pygame.display.get_surface())
         pygame.display.update()

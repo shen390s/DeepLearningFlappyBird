@@ -18,20 +18,20 @@ def load():
 
     # numbers sprites for score display
     IMAGES['numbers'] = (
-        pygame.image.load('assets/sprites/0.png').convert_alpha(),
-        pygame.image.load('assets/sprites/1.png').convert_alpha(),
-        pygame.image.load('assets/sprites/2.png').convert_alpha(),
-        pygame.image.load('assets/sprites/3.png').convert_alpha(),
-        pygame.image.load('assets/sprites/4.png').convert_alpha(),
-        pygame.image.load('assets/sprites/5.png').convert_alpha(),
-        pygame.image.load('assets/sprites/6.png').convert_alpha(),
-        pygame.image.load('assets/sprites/7.png').convert_alpha(),
-        pygame.image.load('assets/sprites/8.png').convert_alpha(),
-        pygame.image.load('assets/sprites/9.png').convert_alpha()
+        pygame.image.load('assets/sprites/0.png'),
+        pygame.image.load('assets/sprites/1.png'),
+        pygame.image.load('assets/sprites/2.png'),
+        pygame.image.load('assets/sprites/3.png'),
+        pygame.image.load('assets/sprites/4.png'),
+        pygame.image.load('assets/sprites/5.png'),
+        pygame.image.load('assets/sprites/6.png'),
+        pygame.image.load('assets/sprites/7.png'),
+        pygame.image.load('assets/sprites/8.png'),
+        pygame.image.load('assets/sprites/9.png')
     )
 
     # base (ground) sprite
-    IMAGES['base'] = pygame.image.load('assets/sprites/base.png').convert_alpha()
+    IMAGES['base'] = pygame.image.load('assets/sprites/base.png')
 
     # sounds
     if 'win' in sys.platform:
@@ -50,16 +50,16 @@ def load():
 
     # select random player sprites
     IMAGES['player'] = (
-        pygame.image.load(PLAYER_PATH[0]).convert_alpha(),
-        pygame.image.load(PLAYER_PATH[1]).convert_alpha(),
-        pygame.image.load(PLAYER_PATH[2]).convert_alpha(),
+        pygame.image.load(PLAYER_PATH[0]),
+        pygame.image.load(PLAYER_PATH[1]),
+        pygame.image.load(PLAYER_PATH[2]),
     )
 
     # select random pipe sprites
     IMAGES['pipe'] = (
         pygame.transform.rotate(
-            pygame.image.load(PIPE_PATH).convert_alpha(), 180),
-        pygame.image.load(PIPE_PATH).convert_alpha(),
+            pygame.image.load(PIPE_PATH), 180),
+        pygame.image.load(PIPE_PATH),
     )
 
     # hismask for pipes

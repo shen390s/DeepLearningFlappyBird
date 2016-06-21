@@ -1,5 +1,8 @@
 import pygame
 import sys
+
+ENABLE_SOUND=False
+
 def load():
     # path of player with different states
     PLAYER_PATH = (
@@ -39,11 +42,12 @@ def load():
     else:
         soundExt = '.ogg'
 
-    SOUNDS['die']    = pygame.mixer.Sound('assets/audio/die' + soundExt)
-    SOUNDS['hit']    = pygame.mixer.Sound('assets/audio/hit' + soundExt)
-    SOUNDS['point']  = pygame.mixer.Sound('assets/audio/point' + soundExt)
-    SOUNDS['swoosh'] = pygame.mixer.Sound('assets/audio/swoosh' + soundExt)
-    SOUNDS['wing']   = pygame.mixer.Sound('assets/audio/wing' + soundExt)
+    if ENABLE_SOUND:
+        SOUNDS['die']    = pygame.mixer.Sound('assets/audio/die' + soundExt)
+        SOUNDS['hit']    = pygame.mixer.Sound('assets/audio/hit' + soundExt)
+        SOUNDS['point']  = pygame.mixer.Sound('assets/audio/point' + soundExt)
+        SOUNDS['swoosh'] = pygame.mixer.Sound('assets/audio/swoosh' + soundExt)
+        SOUNDS['wing']   = pygame.mixer.Sound('assets/audio/wing' + soundExt)
 
     # select random background sprites
     IMAGES['background'] = pygame.image.load(BACKGROUND_PATH).convert()

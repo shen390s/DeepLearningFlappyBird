@@ -20,6 +20,7 @@ INITIAL_EPSILON = 0.0001 # starting value of epsilon
 REPLAY_MEMORY = 50000 # number of previous transitions to remember
 BATCH = 32 # size of minibatch
 FRAME_PER_ACTION = 1
+NUM_CORES=160
 
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev = 0.01)
@@ -180,7 +181,7 @@ def trainNetwork(s, readout, h_fc1, sess):
         t += 1
 
         # save progress every 10000 iterations
-        if t % 10000 == 0:
+        if t % 50000 == 0:
             saver.save(sess, 'saved_networks/' + GAME + '-dqn', global_step = t)
 
         # print info
@@ -192,9 +193,10 @@ def trainNetwork(s, readout, h_fc1, sess):
         else:
             state = "train"
 
-        print("TIMESTEP", t, "/ STATE", state, \
-            "/ EPSILON", epsilon, "/ ACTION", action_index, "/ REWARD", r_t, \
-            "/ Q_MAX %e" % np.max(readout_t))
+	if t % 1000 == 0:
+       	    print("TIMESTEP", t, "/ STATE", state, \
+                "/ EPSILON", epsilon, "/ ACTION", action_index, "/ REWARD", r_t, \
+                "/ Q_MAX %e" % np.max(readout_t))
         # write info to files
         '''
         if t % 10000 <= 100:
@@ -204,7 +206,8 @@ def trainNetwork(s, readout, h_fc1, sess):
         '''
 
 def playGame():
-    sess = tf.InteractiveSession()
+    config = tf.ConfigProto(inter_op_parallelism_threads=NUM_CORES, intra_op_parallelism_threads=NUM_CORES )
+    sess = tf.InteractiveSession(config=config)
     s, readout, h_fc1 = createNetwork()
     trainNetwork(s, readout, h_fc1, sess)
 

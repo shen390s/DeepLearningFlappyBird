@@ -21,6 +21,7 @@ REPLAY_MEMORY = 50000 # number of previous transitions to remember
 BATCH = 32 # size of minibatch
 FRAME_PER_ACTION = 1
 NUM_CORES=160
+CKPT_PER_STEPS=10000
 
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev = 0.01)
@@ -181,7 +182,7 @@ def trainNetwork(s, readout, h_fc1, sess):
         t += 1
 
         # save progress every 10000 iterations
-        if t % 50000 == 0:
+        if t % CKPT_PER_STEPS == 0:
             saver.save(sess, 'saved_networks/' + GAME + '-dqn', global_step = t)
 
         # print info
